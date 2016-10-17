@@ -1,8 +1,3 @@
----
-title: New Tutorial - How To Build A Calendar Reader for Alexa
-permalink: calendar-reader-1.html
----
-
 # How to Build a Calendar Reader for Alexa
 
 We want to introduce another way to help you build useful and meaningful skills for Alexa quickly. We have launched a calendar reader template that makes it easy for developers to create a skill similar to an "Event Calendar," "School Events," "Community Calendar," etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [ASK SDK](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. You just need to identify a useful public calendar feed (an .ICS file), and plug it into the sample provided (we walk you through how it’s done). It's a valuable way to quickly learn the end-to-end process for building and publishing an Alexa skill.
