@@ -3,7 +3,12 @@ searchIntent get me events for {date}
 searchIntent whats on {date}
 searchIntent whats happening {date}
 searchIntent tell me whats happening {date}
+searchIntent what is happening {date}
+searchIntent what is happening on {date}
+searchIntent what events are happening {date}
+searchIntent what events are happening on {date}
 
 eventIntent tell me about event {number}
-eventIntent whats event {number} 
+eventIntent whats event {number}
+eventIntent number {number}
 
