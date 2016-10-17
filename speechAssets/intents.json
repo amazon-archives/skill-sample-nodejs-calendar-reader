@@ -1,7 +1,7 @@
 {
   "intents":  [
-                { "intent": "AMAZON.HelpIntent", "slots": []	},
-                {	"intent": "AMAZON.StopIntent", "slots": []	},
+                { "intent": "AMAZON.HelpIntent", "slots": [] },
+                { "intent": "AMAZON.StopIntent", "slots": [] },
                 { "intent": "AMAZON.RepeatIntent", "slots": [] },
                 {	"intent": "AMAZON.CancelIntent", "slots": [] },
                 { "intent": "AMAZON.YesIntent", "slots": [] },
