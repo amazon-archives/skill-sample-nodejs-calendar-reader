@@ -45,7 +45,7 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
    
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-01-005._TTH_.png)
  
-6.  Review the Intent Schema below. This is written in JSON and provides the information needed to map the intents we want to handle programmatically.  Copy this from the intent schema in the [GitHub repository here](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/speechAssets/IntentSchema.json).
+6.  Review the Intent Schema below. This is written in JSON and provides the information needed to map the intents we want to handle programmatically.  Copy this from the intent schema in the [GitHub repository here](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/speechAssets/intents.json).
     
     Below you will see the intents for querying our calendar source, and then a collection of built-in intents to simplify handling common user tasks. You will see that we have six built-in intents that Alexa has the ability to use in any skill.  These are things like Repeat, Cancel, and Help.  Intents can optionally have arguments called slots.  For our two custom intents, "searchIntent" and "eventIntent," we will use these slots to define the data type that we are expecting the user to provide.  
    
