@@ -1,0 +1,9 @@
+searchIntent get me stuff happening {date}
+searchIntent get me events for {date}
+searchIntent whats on {date}
+searchIntent whats happening {date}
+searchIntent tell me whats happening {date}
+
+eventIntent tell me about event {number}
+eventIntent whats event {number} 
+
