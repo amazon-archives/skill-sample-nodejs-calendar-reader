@@ -162,7 +162,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
  
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-004._TTH_.png)
 
-4.  At the bottom of the **‘Select Blueprint’** page, select **“Skip”**
+4.  Select the **Blank Function** option on the Select Blueprint screen.
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-005._TTH_.png)
 
