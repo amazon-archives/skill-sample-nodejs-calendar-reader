@@ -47,7 +47,9 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
  
 6.  Review the Intent Schema below. This is written in JSON and provides the information needed to map the intents we want to handle programmatically.  Copy this from the intent schema in the [GitHub repository here](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/speechAssets/intents.json).
     
-    Below you will see the intents for querying our calendar source, and then a collection of built-in intents to simplify handling common user tasks. You will see that we have six built-in intents that Alexa has the ability to use in any skill.  These are things like Repeat, Cancel, and Help.  Intents can optionally have arguments called slots.  For our two custom intents, "searchIntent" and "eventIntent," we will use these slots to define the data type that we are expecting the user to provide.  
+    Below you will see the a collection of built-in intents to simplify handling common user tasks, and then two additional custom intents for querying our calendar source. Intents can optionally have arguments called slots.  For our two custom intents, "searchIntent" and "eventIntent," we will use these slots to define the data type that we are expecting the user to provide.
+    
+    Slots are predefined data types that we expect the user to provide.  You can think of validation on a webpage's text box as an example of a slot.  If Alexa doesn't receive the correct data type, it won't be able to execute the intent.
    
     For our searchIntent, we expect the user to provide a date, like "October 7th."  For the eventIntent, the user will be providing a number, like "Tell me about event #1." For more on the use of built-in intents, go [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/implementing-the-built-in-intents).
 
@@ -67,6 +69,8 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
       ]
     }
     ```
+    
+    You can see that we have defined six different built-in intents: Help, Stop, Repeat, Cancel, Yes, and No.  Our two custom intents, searchIntent and eventIntent, each have a slot defined for them.  This means that we expect a specific data type from the user when they use these intents.  You will see how this works more clearly when we define our sample utterances below.
 
 7.  The next step is to build the utterance list.  This is meant to be an extensive, thorough list of the ways users will try to interact with your skill.
 
@@ -91,6 +95,8 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     eventIntent whats event {number}
     eventIntent number {number}
     ```
+    
+    As you can see in the example above, we are really only using two intents: searchIntent and eventIntent.  Each example is a different way that a user might ask for that intent.  searchIntent expects a AMAZON.DATE slot, and eventIntent expects a AMAZON.NUMBER slot.
 
 9.  Select **Save**. You should see the interaction model being built (this might a take a minute or two). If you select Next, your changes will be saved and you will go directly to the test screen. After selecting Save, it should now look like this:
 
@@ -102,14 +108,14 @@ Next we will configure the AWS Lambda function that will host the logic for our 
 
 ### Installing and Working with the Alexa Skills Kit SDK for Node.js (alexa-sdk)
 
-To make the development of skills easier, we have created the ASK SDK for Node.js. We will be using this module to deploy the sample. The alexa-sdk is immediately available on [github here](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs) and can be deployed as a node package from within your Node.js environment.
+To make the development of skills easier, we have created the ASK SDK for Node.js. We will be using this module to deploy the sample. The alexa-sdk is available on [github here](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs) and can be deployed as a node package from within your Node.js environment.
 
 1.  First, you will need to download the sample repository
      * On GitHub, navigate to the [Calendar Reader repository](https://github.com/alexa/skill-sample-nodejs-calendar-reader). Click download (the green button) to download the repository to your local machine.
 
 2.  To leverage the SDK for ASK you will need to install Node.js and update npm. To set this up on your machine, [follow these steps](https://docs.npmjs.com/getting-started/installing-node).
 
-3.  Once you have the source downloaded, node installed and npm updated, you are ready to install the ASK-SDK. Install this in the same directory as your src/index.js file for your skill. Change the directory to the src directory of your skill, and then in the command line, type:
+3.  Once you have the source downloaded, node.js installed and npm updated, you are ready to install the ASK-SDK. Install this in the same directory as your Calendar Reader src/index.js file you downloaded earlier. Change the directory to the src directory of your skill, and then in the command line, type:
  
     ```
     npm install --save alexa-sdk
@@ -126,6 +132,7 @@ To make the development of skills easier, we have created the ASK SDK for Node.j
  
  ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-001._TTH_.png)
     
+0.  If you already have an AWS account, you can skip this section.  Just sign in to your console.
 1.  Open [aws.amazon.com](aws.amazon.com) and then choose **‘Create an AWS Account’**
 
     1. Follow the online instructions. Do not worry about the IAM role, we will do that later.
@@ -166,7 +173,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-007._TTH_.png)
 
-7.  You should now be in the **"Configure Function"** section. Enter the Name, Description, and Runtime for your skill as in the example below.
+7.  You should now be in the **"Configure Function"** section. Enter the Name, Description, and Runtime for your skill as in the example below.  Your runtime should be "Node.js 4.3."
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-008._TTH_.png)
 
@@ -203,7 +210,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
  
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-03-001._TTH_.png)
 
-2.  Select the Configuration section, and make sure to choose the AWS Lambda ARN region corresponds to your AWS Lambda function's region.  Add the ARN from the Lambda function you created in the AWS Console earlier. Select the **Lambda ARN (Amazon Resource Name)** radio button. Then, select **“No”** for account linking since we will not be connecting to an external account for this tutorial. Paste the ARN you copied earlier into the Endpoint field. Then select **Next**.
+2.  Select the Configuration section, and make sure to choose the AWS Lambda ARN region that corresponds to your AWS Lambda function's region.  Add the ARN from the Lambda function you created in the AWS Console earlier. Select the **Lambda ARN (Amazon Resource Name)** radio button. Then, select **“No”** for account linking since we will not be connecting to an external account for this tutorial. Paste the ARN you copied earlier into the Endpoint field. Then select **Next**.
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-03-002._TTH_.png)
 
@@ -229,13 +236,12 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
  
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-04-003._TTH_.png)
   
-### Not working (getting an invalid response)?
+### Skills / Lambda Troubleshooting (getting an invalid response)?
  * Do you have the right ARN copied from your Lambda function into your Developer Portal / Skill?
  * Are you calling the right invocation name?
- * Are you saying launch, start or open?
+ * Are you saying launch, start or open (followed by your invocation name)?
  * Are you sure you have no other skills in your accounts with the same invocation name?
- * For this template specifically, you should have a minimum of 20 facts for a good customer experience.
-
+ 
 ## Step 5: Make it Yours
  
 1.  In the Skill Information section in the Developer Console, edit the Skill Information Tab to reflect your new calendar reader skill:
@@ -260,7 +266,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-05-002._TTH_.png)
 
-5.  In order to control who accesses your web service, we should validate the application id in requests made to your web service. Let’s go back to your Alexa skill in your Developer Portal for a moment. Copy in your Application ID from the ‘Skill Information’ section in your developer portal / skill:
+5.  In order to control who accesses your Lambda funcion, we should validate the application id in requests made to your function. Let’s go back to your Alexa skill in your Developer Portal for a moment. Copy in your Application ID from the ‘Skill Information’ section in your developer portal / skill:
  
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-05-004._TTH_.png)
 
