@@ -96,7 +96,7 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     eventIntent number {number}
     ```
     
-    As you can see in the example above, we are really only using two intents: searchIntent and eventIntent.  Each example is a different way that a user might ask for that intent.  searchIntent expects a AMAZON.DATE slot, and eventIntent expects a AMAZON.NUMBER slot.
+    As you can see in the example above, we are using our two custom intents: searchIntent and eventIntent.  Each example is a different way that a user might ask for that intent.  searchIntent expects a AMAZON.DATE slot, and eventIntent expects a AMAZON.NUMBER slot.
 
 9.  Select **Save**. You should see the interaction model being built (this might a take a minute or two). If you select Next, your changes will be saved and you will go directly to the test screen. After selecting Save, it should now look like this:
 
