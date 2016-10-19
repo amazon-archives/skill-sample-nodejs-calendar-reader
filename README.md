@@ -132,7 +132,7 @@ To make the development of skills easier, we have created the ASK SDK for Node.j
  
  ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-001._TTH_.png)
     
-**Note: If you already have an AWS account, you can skip this section.  Just sign in to your console.
+**Note: If you already have an AWS account, you can skip this section.  Just sign in to your console.**
 1.  Open [aws.amazon.com](aws.amazon.com) and then choose **‘Create an AWS Account’**
 
     1. Follow the online instructions. Do not worry about the IAM role, we will do that later.
