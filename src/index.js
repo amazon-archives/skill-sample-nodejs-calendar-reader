@@ -23,7 +23,7 @@ var skillName = "Events calendar:";
 var welcomeMessage = "You can ask for the events today. search for events by date. or say help. What would you like? ";
 
 // Message for help intent
-var HelpMessage = "Here are some things you can say: Is there an event today? Is there an event on the 18th of July? What are the events next week? Are there any events tomorrow?";
+var HelpMessage = "Here are some things you can say: Is there an event today? Is there an event on the 18th of July? What are the events next week? Are there any events tomorrow?  What would you like to know?";
 
 var descriptionStateHelpMessage = "Here are some things you can say: Tell me about event one";
 
