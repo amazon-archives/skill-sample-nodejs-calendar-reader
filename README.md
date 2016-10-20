@@ -47,7 +47,7 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
  
 6.  Review the Intent Schema below. This is written in JSON and provides the information needed to map the intents we want to handle programmatically.  Copy this from the intent schema in the [GitHub repository here](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/speechAssets/intents.json).
     
-    Below you will see the a collection of built-in intents to simplify handling common user tasks, and then two additional custom intents for querying our calendar source. Intents can optionally have arguments called slots.  For our two custom intents, "searchIntent" and "eventIntent," we will use these slots to define the data type that we are expecting the user to provide.
+    Below you will see a collection of built-in intents to simplify handling common user tasks, and then two additional custom intents for querying our calendar source. Intents can optionally have arguments called slots.  For our two custom intents, "searchIntent" and "eventIntent," we will use these slots to define the data type that we are expecting the user to provide.
     
     Slots are predefined data types that we expect the user to provide.  You can think of validation on a webpage's text box as an example of a slot.  If Alexa doesn't receive the correct data type, it won't be able to execute the intent.
    
@@ -96,9 +96,9 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     eventIntent number {number}
     ```
     
-    As you can see in the example above, we are using our two custom intents: searchIntent and eventIntent.  Each example is a different way that a user might ask for that intent.  searchIntent expects a AMAZON.DATE slot, and eventIntent expects a AMAZON.NUMBER slot.
+    As you can see in the example above, we are using our two custom intents: searchIntent and eventIntent.  Each example is a different way that a user might ask for that intent.  searchIntent expects a AMAZON.DATE slot, and eventIntent expects a AMAZON.NUMBER slot.  ([More information on slots can be found here.](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#slot-types))
 
-9.  Select **Save**. You should see the interaction model being built (this might a take a minute or two). If you select Next, your changes will be saved and you will go directly to the test screen. After selecting Save, it should now look like this:
+9.  Select **Save**. You should see the interaction model being built (this might a take a minute or two). If you select Next, your changes will be saved and you will go directly to the Configuration screen. After selecting Save, it should now look like this:
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-01-007._TTH_.png)
 
