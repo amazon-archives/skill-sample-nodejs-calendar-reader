@@ -315,7 +315,7 @@ Now we need to go back to our Developer Portal to test and edit our skill and we
     * In your example phrases, be sure that the examples you use exactly match the utterances that you created in the Interaction Model section. Remember, there are built-in intents such as help and cancel. You can learn more about [built-in intents here](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/implementing-the-built-in-intents#Available%20Built-in%20Intents). You can also review the list of [supported phrases](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/supported-phrases-to-begin-a-conversation) to begin a conversation.
     * Be sure you have the rights to whatever icons you are uploading – you will need to provide both 108x108px and 512x512px images. If there is any question, the Amazon certification team will fail your Alexa skill submission.  In the event your skill fails certification, you will receive an email from Amazon's testing team with information about your certification results.
 
-    ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-06-002._TTH_.png)
+    ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-06-002._V39875398345_.png)
  
     Once you have uploaded your icons, you should see a success message at the bottom of the screen.
 
