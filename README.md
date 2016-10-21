@@ -189,7 +189,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
     
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-010._TTH_.png)
 
-10. You will be asked to set up your Identity and Access Management or “IAM” role if you have not done so. AWS Identity and Access Management (IAM) enables you to securely control access to AWS services and resources for your users. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources. In the Role Summary section, select "Create a new IAM Role" from the IAM Role dropdown menu. The Role Name and policy document will automatically populate.
+10. You will be asked to set up an Identity and Access Management or “IAM” role if you have not done so. AWS Identity and Access Management (IAM) enables you to securely control access to AWS services and resources for your users. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources. The IAM role will give your lambda function permission to use other AWS Services at runtime, such as Cloudwatch Logs, the AWS logs collection and storage service. In the Role Summary section, select "Create a new IAM Role" from the IAM Role dropdown menu. The Role Name and policy document will automatically populate.
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-012._TTH_.png)
 
@@ -233,7 +233,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
   
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-04-002._TTH_.png)
  
-3.  (Optional) Testing with your device. This is optional as you can do all the testing in the portal. Assuming your Echo device is on-line (and logged in with the same account as your developer account), you should now see your skill enabled in the Alexa app (under "Your Skills") and ask Alexa to launch your skill. For more information on testing an Alexa skill and registering an Alexa-enabled device, [check here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/testing-an-alexa-skill).
+3.  (Optional) Testing with your device. This is optional as you can do all the testing in the portal. Assuming your Echo device is on-line (and logged in with the same account as your developer account), you should now see your skill enabled in the Alexa app (under "Your Skills," in the top right corner) and ask Alexa to launch your skill. For more information on testing an Alexa skill and registering an Alexa-enabled device, [check here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/testing-an-alexa-skill).
  
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-04-003._TTH_.png)
   
@@ -263,11 +263,11 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
     var skillName = 'Events calendar:'
     ```
     
-4.  You may also want to change the speech responses we've provided.  These are the things Alexa will use to respond to your user's intents, and customizing them will make your skill feel more authentic to your data.  You don’t have to edit them, but we highly recommend making some customizations.
+4.  You may also want to change the speech responses we've provided.  These are the things Alexa will use to respond to your user's intents, and customizing them will make your skill feel more authentic to your data.  You don’t have to edit them, but we highly recommend making some customizations.  If one of our predefined messages ends with a question, please keep an ending question in your modified message, as Alexa will continue to listen for customer's answer after speaking the message.
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-05-002._TTH_.png)
 
-5.  In order to control who accesses your Lambda funcion, we should validate the application id in requests made to your function. Let’s go back to your Alexa skill in your Developer Portal for a moment. Copy in your Application ID from the ‘Skill Information’ section in your developer portal / skill:
+5.  AWS Lambda builtin security will make sure only our Alexa service can call your Lambda function. To add an extra layer of security, we should validate the application id in requests made to your function. Let’s go back to your Alexa skill in your Developer Portal for a moment. Copy in your Application ID from the ‘Skill Information’ section in your developer portal / skill:
  
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-05-004._TTH_.png)
 
@@ -341,7 +341,7 @@ Now we need to go back to our Developer Portal to test and edit our skill and we
    
     4.  Finally, confirm your submission. Select “Yes” to submit your skill.
    
-Congratulations! You have successfully submitted your skill for publication. You will receive progress e-mails and possibly other suggestions from the Alexa certification team on how you can make your skill even better. You can update your skills at any time.
+Congratulations! You have successfully submitted your skill for publication. You will receive progress e-mails and possibly other suggestions from the Alexa certification team on how you can make your skill even better. You will typically receive news back from the certification team within 4-5 business days. You can update your skills at any time, except while they are being reviewed for certification.
 
 Did you like this tutorial? You can find more on our [Alexa Skills Kit training page](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/content/alexa-skills-developer-training)
 
