@@ -1,10 +1,10 @@
 # How to Build a Calendar Reader for Alexa
 
-We want to introduce another way to help you build useful and meaningful skills for Alexa quickly. We have launched a calendar reader template that makes it easy for developers to create a skill similar to an "Event Calendar," "School Events," "Community Calendar," etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [ASK SDK](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. You just need to identify a useful public calendar feed (an .ICS file), and plug it into the sample provided (we walk you through how it’s done). It's a valuable way to quickly learn the end-to-end process for building and publishing an Alexa skill.
+We want to introduce another way to help you build useful and meaningful skills for Alexa quickly. We have launched a calendar reader template that makes it easy for developers to create a skill similar to an "Event Calendar," or "Community Calendar," etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [ASK SDK](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. You just need to identify a useful public calendar feed (an .ICS file), and plug it into the sample provided (we walk you through how it’s done). It's a valuable way to quickly learn the end-to-end process for building and publishing an Alexa skill.
 
 This tutorial will walk first-time Alexa skills developers through all the required steps involved in creating a skill using this calendar reader template, called ‘Stanford Calendar’.  It will retrieve data from an internet calendar of events from Stanford University's website. This post assumes you have some familiarity with JavaScript/Node.js (or a similar programming language).
 
-Using the [Alexa Skills Kit](https://developer.amazon.com/alexa-skills-kit), you can build an application that can receive and respond to voice requests made on the Alexa platform.  In this tutorial, you’ll build a web service to handle requests from Alexa and map this service to a skill in the Amazon Developer Portal, making it available on your device and to all Alexa users after certification. 
+Using the [Alexa Skills Kit](https://developer.amazon.com/alexa-skills-kit), you can build an application that can receive and respond to voice requests made on the Alexa service.  In this tutorial, you’ll build a web service to handle requests from Alexa and map this service to a skill in the Amazon Developer Portal, making it available on your device and to all Alexa users after certification. 
 
 After completing this tutorial, you'll know how to do the following: 
 
@@ -267,7 +267,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-05-002._TTH_.png)
 
-5.  AWS Lambda builtin security will make sure only our Alexa service can call your Lambda function. To add an extra layer of security, we should validate the application id in requests made to your function. Let’s go back to your Alexa skill in your Developer Portal for a moment. Copy in your Application ID from the ‘Skill Information’ section in your developer portal / skill:
+5.  AWS Lambda built-in security will make sure only our Alexa service can call your Lambda function. To add an extra layer of security, we should validate the application id in requests made to your function. Let’s go back to your Alexa skill in your Developer Portal for a moment. Copy in your Application ID from the ‘Skill Information’ section in your developer portal / skill:
  
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-05-004._TTH_.png)
 
@@ -329,7 +329,7 @@ Now we need to go back to our Developer Portal to test and edit our skill and we
     1.  On the Privacy and Compliance section, make sure to consider each answer.
         1.  Since our skill does not require purchases or spending of money, choose "No" for the first question.
         2.  We don't collect any personal data from our users, so you can also choose "No" for the second question.
-        3.  A calendar skill is not intended to target children under the age of 13, so we can choose "No" for the third question as well.
+        3.  If your calendar skill is not intended to target children under the age of 13, choose "No" for the third question as well.
         4.  Choose to certify that your skill can be imported to and exported from the countries and regions that you operate the skill.
         5.  Privacy and Terms URL’s are optional, but recommended.
 
