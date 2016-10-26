@@ -1,11 +1,14 @@
 # How to Build a Calendar Reader for Alexa
 
-To introduce another way to help you build useful and meaningful skills for Alexa quickly, we’ve launched a calendar reader skill template. This new Alexa skill template makes it easy for developers to create a skill like an “Event Calendar,” or “Community Calendar,” etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [ASK SDK](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. You just need to identify a useful public calendar feed (an .ICS file), and plug it into the sample provided (we walk you through how it’s done). It's a valuable way to quickly learn the end-to-end process for building and publishing an Alexa skill.
+To introduce another way to help you build useful and meaningful skills for Alexa quickly, we’ve launched a calendar reader skill template. This new Alexa skill template makes it easy for developers to create a skill like an “Event Calendar,” or “Community Calendar,” etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [ASK SDK](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. 
 
-To start, identify a useful public calendar feed (an .ICS file). Once you have a calendar feed, simply follow this tutorial and plug it into the sample provided, and we’ll walk you through how it’s done in this tutorial. It’s a valuable way to quickly learn the end-to-end
-process for building and publishing an Alexa skill.
+For this tutorial, we'll be working with the calendar from Stanford University.  The user of this skill will be able to ask things like:
 
-This tutorial will walk Alexa skills developers through all the required steps involved in creating a skill using this calendar reader template, called ‘Stanford Calendar’. It will retrieve data from an internet calendar of events from Stanford University’s website. This post assumes you have some familiarity with JavaScript/Node.js (or a similar programming language).
+   * "When is happening tonight?
+   * "What events are going on next Monday?"
+   * "Tell me more about the second event."
+
+You will be able to plug your own public calendar feed (an .ICS file) into the sample provided, so that you can interact with your calendar in the same way. This could be useful for small businesses, community leaders, event planners, realtors, or anyone that wants to share a calendar with their audience.
 
 Using the [Alexa Skills Kit](https://developer.amazon.com/alexa-skills-kit), you can build an application that can receive and respond to voice requests made on the Alexa service. In this tutorial, you’ll build a web service to handle requests from Alexa and map this service to a skill in the Amazon Developer Portal, making it available on your device and to all Alexa users after certification. 
 
@@ -15,6 +18,7 @@ After completing this tutorial, you'll know how to do the following:
    * Understand the basics of VUI design - Creating this skill will help you understand the basics of creating a working Voice User Interface (VUI) while using a cut/paste approach to development. You will learn by doing, and end up with a published Alexa skill. This tutorial includes instructions on how to customize the skill and submit for certification. For guidance on designing a voice experience with Alexa you can also [watch this video](https://goto.webcasts.com/starthere.jsp?ei=1087592).
    * Use JavaScript/Node.js and the Alexa Skills Kit to create a skill - You will use the template as a guide but the customization is up to you. For more background information on using the Alexa Skills Kit please [watch this video](https://goto.webcasts.com/starthere.jsp?ei=1087595).
    * Get your skill published - Once you have completed your skill, this tutorial will guide you through testing your skill and sending your skill through the certification processso it can be enabled by any Alexa user. 
+   * Interact with a calendar (.ics file) using voice commands.
    
 # Let's Get Started
 
@@ -37,8 +41,8 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
 4.  There are several choices to make on this page, so we will cover each one individually.
     1. Choose the language you want to start with.  You can go back and add all of this information for each language later, but for this tutorial, we are working with "English (U.S.)"
     2. Make sure the radio button for the Custom Interaction Model is selected for “Skill Type”.
-    3. Add the name of the skill. Give your skill a name that is simple and memorable, like "Stanford Calendar." The name will be the one that shows up in the Alexa App when users are looking for new skills.
-    4. Add the invocation name. This is what your users will actually say to start using your skill. Since we are using the sample, type “stanford calendar”.
+    3. Add the name of the skill. Give your skill a name that is simple and memorable, like "Stanford Calendar." The name will be the one that shows up in the Alexa App when users are looking for new skills.  (Obviously, don't use Stanford Calendar.  Use a name that describes the calendar you plan to read.  For ideas, check out [iCalShare](http://icalshare.com/) for a huge list of user created calendars.)
+    4. Add the invocation name. This is what your users will actually say to start using your skill. Like in Step #5, use one or two words, because your users will have to say this every time they want to interact with your skill.
     5. Under "Global Fields," select "no" for Audio Player, as our skill won't be playing any audio.  
     6. Select **Next**.
    
@@ -52,7 +56,7 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     
     Below you will see a collection of built-in intents to simplify handling common user tasks, and then two additional custom intents for querying our calendar source. Intents can optionally have arguments called slots.  For our two custom intents, "searchIntent" and "eventIntent," we will use these slots to define the data type that we are expecting the user to provide.
     
-    Slots are predefined data types that we expect the user to provide.  You can think of validation on a webpage's text box as an example of a slot.  If Alexa doesn't receive the correct data type, it won't be able to execute the intent.
+    Slots are predefined data types that we expect the user to provide.  This helps resolve data to a standardized format (like an enum).  For example, you could say "next Monday," and it would be able to return a specific date.  This data also becomes training data for Alexa's Natural Language Understanding (NLU) engine.
    
     For our searchIntent, we expect the user to provide a date, like "October 7th."  For the eventIntent, the user will be providing a number, like "Tell me about event #1." For more on the use of built-in intents, go [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/implementing-the-built-in-intents).
 
@@ -75,7 +79,7 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     
     You can see that we have defined six different built-in intents: Help, Stop, Repeat, Cancel, Yes, and No.  Our two custom intents, searchIntent and eventIntent, each have a slot defined for them.  This means that we expect a specific data type from the user when they use these intents.  You will see how this works more clearly when we define our sample utterances below.
 
-7.  The next step is to build the utterance list.  This is meant to be an extensive, thorough list of the ways users will try to interact with your skill.
+7.  The next step is to build the utterance list.  This is meant to be an thorough, well-thought-out list of the ways users will try to interact with your skill.  You don't have to get every possible phrase, but it is important to cover a variety of ways so that the NLU engine can best understand your user's intent.
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-01-006._TTH_.png)
 
@@ -169,7 +173,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-005._TTH_.png)
 
-5.  Now, you need to configure the event that will trigger your function to be called. As we are building skills with the Alexa Skills Kit, click on the gray dash-lined box and select Alexa Skills Kit from the dropdown menu.  This gives the Alexa service permission to invoke your skill's function.
+5.  Now, you need to configure the event that will trigger your function to be called. As we are building skills with the Alexa Skills Kit, click on the gray dash-lined box and select Alexa Skills Kit from the dropdown menu.  (If you don't see this option, go back to Step #1 and select US East (N. Virginia)).  This gives the Alexa service permission to invoke your skill's function.
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-02-006._TTH_.png)
 
@@ -316,7 +320,7 @@ Now we need to go back to our Developer Portal to test and edit our skill and we
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-06-001._TTH_.png)
  
     * Spend some time coming up with an enticing, succinct description. This is the only place you have to attract new users. These descriptions show up on the list of [skills available](http://alexa.amazon.com/#skills) in the Alexa app.
-    * In your example phrases, be sure that the examples you use exactly match the utterances that you created in the Interaction Model section. Remember, there are built-in intents such as help and cancel. You can learn more about [built-in intents here](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/implementing-the-built-in-intents#Available%20Built-in%20Intents). You can also review the list of [supported phrases](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/supported-phrases-to-begin-a-conversation) to begin a conversation.
+    * In your example phrases, be sure that the examples you use exactly match the utterances that you created in the Interaction Model section.  This first example should be "Alexa, open {your invocation name}" and no utterance. Remember, there are built-in intents such as help and cancel. You can learn more about [built-in intents here](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/implementing-the-built-in-intents#Available%20Built-in%20Intents). You can also review the list of [supported phrases](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/supported-phrases-to-begin-a-conversation) to begin a conversation.
     * Be sure you have the rights to whatever icons you are uploading – you will need to provide both 108x108px and 512x512px images. If there is any question, the Amazon certification team will fail your Alexa skill submission.  In the event your skill fails certification, you will receive an email from Amazon's testing team with information about your certification results.
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/calendar-reader/calendar-reader-06-002._TTH_.png)
