@@ -1,6 +1,6 @@
 # How to Build a Calendar Reader for Alexa
 
-To introduce another way to help you build useful and meaningful skills for Alexa quickly, we’ve launched a calendar reader skill template. This new Alexa skill template makes it easy for developers to create a skill like an “Event Calendar,” or “Community Calendar,” etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [ASK SDK](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. 
+To introduce another way to help you build useful and meaningful skills for Alexa quickly, we’ve launched a calendar reader skill template. This new Alexa skill template makes it easy for developers to create a skill like an “Event Calendar,” or “Community Calendar,” etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [Alexa SDK for Node.js](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. 
 
 For this tutorial, we'll be working with the calendar from Stanford University.  The user of this skill will be able to ask things like:
 
