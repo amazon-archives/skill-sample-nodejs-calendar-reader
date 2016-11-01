@@ -125,7 +125,7 @@ To make the development of skills easier, we have created the ASK SDK for Node.j
 3.  Once you have the source downloaded, node.js installed and npm updated, you are ready to install the ASK-SDK. Install this in the same directory as your Calendar Reader src/index.js file you downloaded earlier. Change the directory to the src directory of your skill, and then in the command line, type:
  
     ```
-    npm install --save alexa-sdk
+    npm install --save alexa-sdk ical
     ```
     Once this is installed you will need to include the **node_modules** directory with the source code for your skill when you compress the src for uploading to AWS Lambda. Let's do this with the example.
     
