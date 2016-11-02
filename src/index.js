@@ -105,7 +105,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         var slotValue = this.event.request.intent.slots.date.value;
         var parent = this;
 
-        // Using the iCal library pass I the URL of where we want to get the data from.
+        // Using the iCal library I pass the URL of where we want to get the data from.
         ical.fromURL(URL, {}, function (err, data) {
             // Loop through all iCal data found
             for (var k in data) {
