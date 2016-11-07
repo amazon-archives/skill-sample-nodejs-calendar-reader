@@ -198,7 +198,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
 
     'SessionEndedRequest': function () {
-        // Use this function to clear up and save any data needed between sessions
+        this.emit('AMAZON.StopIntent');
     },
 
     'Unhandled': function () {
@@ -251,7 +251,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     },
 
     'SessionEndedRequest': function () {
-        // Use this function to clear up and save any data needed between sessions
+        this.emit('AMAZON.StopIntent');
     },
 
     'Unhandled': function () {
