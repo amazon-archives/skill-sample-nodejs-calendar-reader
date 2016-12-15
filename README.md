@@ -1,3 +1,8 @@
+<img src="https://github.com/jeffblankenburg/alexa/blob/master/images/alexalogo.png" height="100">
+
+| [Begin](https://github.com/jeffblankenburg/alexa) | [Tutorials](https://github.com/jeffblankenburg/alexa/tree/master/tutorials) | [Code Samples](https://github.com/jeffblankenburg/alexa/tree/master/code_samples) | [Voice User Interface](https://github.com/jeffblankenburg/alexa/tree/master/voice_user_interface) | [Testing](https://github.com/jeffblankenburg/alexa/tree/master/testing) | [Certification](https://github.com/jeffblankenburg/alexa/tree/master/certification) | [Analytics](https://github.com/jeffblankenburg/alexa/tree/master/analytics) |
+|---------|-------------|----------------|------------------------|-----------|-----------------|-------------|
+
 # How to Build a Calendar Reader for Alexa
 
 To introduce another way to help you build useful and meaningful skills for Alexa quickly, we’ve launched a calendar reader skill template. This new Alexa skill template makes it easy for developers to create a skill like an “Event Calendar,” or “Community Calendar,” etc. The template leverages [AWS Lambda](https://aws.amazon.com/lambda/), the [Alexa Skills Kit (ASK)](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit), and the [Alexa SDK for Node.js](https://developer.amazon.com/public/community/post/Tx213D2XQIYH864/Announcing-the-Alexa-Skills-Kit-for-Node-js), while providing the business logic, use cases, error handling and help functions for your skill. 
