@@ -270,6 +270,8 @@ exports.handler = function (event, context, callback) {
 
 // Remove HTML tags from string
 function removeTags(str) {
+    if (!str) // some iCal properties may not exist
+        return str;
     return str.replace(/<(?:.|\n)*?>/gm, '');
 }
 
