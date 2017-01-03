@@ -149,7 +149,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                         output += scheduledEventMessage;
 
                         if (relevantEvents.length > 1) {
-                            output += utils.format(firstThreeMessage, relevantEvents.length);
+                            output += utils.format(firstThreeMessage, relevantEvents.length > 3 ? 3 : relevantEvents.length);
                         }
 
                         if (relevantEvents[0] != null) {
