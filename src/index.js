@@ -82,6 +82,10 @@ var newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         this.emit(':ask', skillName + " " + welcomeMessage, welcomeMessage);
     },
+
+    'Unhandled': function () {
+        this.emit(':ask', HelpMessage, HelpMessage);
+    },
 };
 
 // Create a new handler with a SEARCH state
