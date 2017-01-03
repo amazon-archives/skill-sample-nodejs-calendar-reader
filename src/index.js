@@ -20,7 +20,7 @@ var URL = "http://events.stanford.edu/eventlist.ics";
 var skillName = "Events calendar:";
 
 // Message when the skill is first called
-var welcomeMessage = "You can ask for the events today. search for events by date. or say help. What would you like? ";
+var welcomeMessage = "You can ask for the events today. Search for events by date. or say help. What would you like? ";
 
 // Message for help intent
 var HelpMessage = "Here are some things you can say: Is there an event today? Is there an event on the 18th of July? What are the events next week? Are there any events tomorrow?  What would you like to know?";
@@ -28,7 +28,7 @@ var HelpMessage = "Here are some things you can say: Is there an event today? Is
 var descriptionStateHelpMessage = "Here are some things you can say: Tell me about event one";
 
 // Used when there is no data within a time period
-var NoDataMessage = "Sorry there arnt't any events scheduled. Would you like to search again?";
+var NoDataMessage = "Sorry there aren't any events scheduled. Would you like to search again?";
 
 // Used to tell user skill is closing
 var shutdownMessage = "Ok see you again soon.";
@@ -114,14 +114,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             // Loop through all iCal data found
             for (var k in data) {
                 if (data.hasOwnProperty(k)) {
-                    var ev = data[k]
+                    var ev = data[k];
                     // Pick out the data relevant to us and create an object to hold it.
                     var eventData = {
                         summary: removeTags(ev.summary),
                         location: removeTags(ev.location),
                         description: removeTags(ev.description),
                         start: ev.start
-                    }
+                    };
                     // add the newly created object to an array for use later.
                     eventList.push(eventData);
                 }
@@ -274,7 +274,9 @@ exports.handler = function (event, context, callback) {
 
 // Remove HTML tags from string
 function removeTags(str) {
-    return str.replace(/<(?:.|\n)*?>/gm, '');
+    if (str) {
+        return str.replace(/<(?:.|\n)*?>/gm, '');
+    }
 }
 
 // Given an AMAZON.DATE slot value parse out to usable JavaScript Date object
@@ -378,7 +380,7 @@ function getEventsBeweenDates(startDate, endDate, eventList) {
         }
     }
 
-    console.log("FOUND " + data.length + " events between those times")
+    console.log("FOUND " + data.length + " events between those times");
     return data;
 }
 
