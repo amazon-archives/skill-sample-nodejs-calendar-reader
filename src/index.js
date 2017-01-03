@@ -266,7 +266,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 // register handlers
 exports.handler = function (event, context, callback) {
     alexa = Alexa.handler(event, context);
-    alexa.AppId = APP_ID;
+    alexa.appId = APP_ID;
     alexa.registerHandlers(newSessionHandlers, startSearchHandlers, descriptionHandlers);
     alexa.execute();
 };
