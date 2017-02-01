@@ -82,7 +82,11 @@ var newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         this.emit(':ask', skillName + " " + welcomeMessage, welcomeMessage);
     },
-
+    "searchIntent": function() 
+    {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState("searchIntent");
+    },
     'Unhandled': function () {
         this.emit(':ask', HelpMessage, HelpMessage);
     },
@@ -107,85 +111,91 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         // Declare variables 
         var eventList = new Array();
         var slotValue = this.event.request.intent.slots.date.value;
-        var parent = this;
+        if (slotValue != undefined)
+        {
+            var parent = this;
 
-        // Using the iCal library I pass the URL of where we want to get the data from.
-        ical.fromURL(URL, {}, function (err, data) {
-            // Loop through all iCal data found
-            for (var k in data) {
-                if (data.hasOwnProperty(k)) {
-                    var ev = data[k];
-                    // Pick out the data relevant to us and create an object to hold it.
-                    var eventData = {
-                        summary: removeTags(ev.summary),
-                        location: removeTags(ev.location),
-                        description: removeTags(ev.description),
-                        start: ev.start
-                    };
-                    // add the newly created object to an array for use later.
-                    eventList.push(eventData);
+            // Using the iCal library I pass the URL of where we want to get the data from.
+            ical.fromURL(URL, {}, function (err, data) {
+                // Loop through all iCal data found
+                for (var k in data) {
+                    if (data.hasOwnProperty(k)) {
+                        var ev = data[k];
+                        // Pick out the data relevant to us and create an object to hold it.
+                        var eventData = {
+                            summary: removeTags(ev.summary),
+                            location: removeTags(ev.location),
+                            description: removeTags(ev.description),
+                            start: ev.start
+                        };
+                        // add the newly created object to an array for use later.
+                        eventList.push(eventData);
+                    }
                 }
-            }
-            // Check we have data
-            if (eventList.length > 0) {
-                // Read slot data and parse out a usable date 
-                var eventDate = getDateFromSlot(slotValue);
-                // Check we have both a start and end date
-                if (eventDate.startDate && eventDate.endDate) {
-                    // initiate a new array, and this time fill it with events that fit between the two dates
-                    relevantEvents = getEventsBeweenDates(eventDate.startDate, eventDate.endDate, eventList);
+                // Check we have data
+                if (eventList.length > 0) {
+                    // Read slot data and parse out a usable date 
+                    var eventDate = getDateFromSlot(slotValue);
+                    // Check we have both a start and end date
+                    if (eventDate.startDate && eventDate.endDate) {
+                        // initiate a new array, and this time fill it with events that fit between the two dates
+                        relevantEvents = getEventsBeweenDates(eventDate.startDate, eventDate.endDate, eventList);
 
-                    if (relevantEvents.length > 0) {
-                        // change state to description
-                        parent.handler.state = states.DESCRIPTION;
+                        if (relevantEvents.length > 0) {
+                            // change state to description
+                            parent.handler.state = states.DESCRIPTION;
 
-                        // Create output for both Alexa and the content card
-                        var cardContent = "";
-                        output = oneEventMessage;
-                        if (relevantEvents.length > 1) {
-                            output = utils.format(multipleEventMessage, relevantEvents.length);
+                            // Create output for both Alexa and the content card
+                            var cardContent = "";
+                            output = oneEventMessage;
+                            if (relevantEvents.length > 1) {
+                                output = utils.format(multipleEventMessage, relevantEvents.length);
+                            }
+
+                            output += scheduledEventMessage;
+
+                            if (relevantEvents.length > 1) {
+                                output += utils.format(firstThreeMessage, relevantEvents.length > 3 ? 3 : relevantEvents.length);
+                            }
+
+                            if (relevantEvents[0] != null) {
+                                var date = new Date(relevantEvents[0].start);
+                                output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), relevantEvents[0].location, date.toDateString() + ".");
+                            }
+                            if (relevantEvents[1]) {
+                                var date = new Date(relevantEvents[1].start);
+                                output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), relevantEvents[1].location, date.toDateString() + ".");
+                            }
+                            if (relevantEvents[2]) {
+                                var date = new Date(relevantEvents[2].start);
+                                output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), relevantEvents[2].location, date.toDateString() + ".");
+                            }
+
+                            for (var i = 0; i < relevantEvents.length; i++) {
+                                var date = new Date(relevantEvents[i].start);
+                                cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), removeTags(relevantEvents[i].location), date.toDateString()+ "\n\n");
+                            }
+
+                            output += eventNumberMoreInfoText;
+                            alexa.emit(':askWithCard', output, haveEventsRepromt, cardTitle, cardContent);
+                        } else {
+                            output = NoDataMessage;
+                            alexa.emit(':ask', output, output);
                         }
-
-                        output += scheduledEventMessage;
-
-                        if (relevantEvents.length > 1) {
-                            output += utils.format(firstThreeMessage, relevantEvents.length > 3 ? 3 : relevantEvents.length);
-                        }
-
-                        if (relevantEvents[0] != null) {
-                            var date = new Date(relevantEvents[0].start);
-                            output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), relevantEvents[0].location, date.toDateString() + ".");
-                        }
-                        if (relevantEvents[1]) {
-                            var date = new Date(relevantEvents[1].start);
-                            output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), relevantEvents[1].location, date.toDateString() + ".");
-                        }
-                        if (relevantEvents[2]) {
-                            var date = new Date(relevantEvents[2].start);
-                            output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), relevantEvents[2].location, date.toDateString() + ".");
-                        }
-
-                        for (var i = 0; i < relevantEvents.length; i++) {
-                            var date = new Date(relevantEvents[i].start);
-                            cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), removeTags(relevantEvents[i].location), date.toDateString()+ "\n\n");
-                        }
-
-                        output += eventNumberMoreInfoText;
-                        alexa.emit(':askWithCard', output, haveEventsRepromt, cardTitle, cardContent);
-                    } else {
+                    }
+                    else {
                         output = NoDataMessage;
                         alexa.emit(':ask', output, output);
                     }
-                }
-                else {
+                } else {
                     output = NoDataMessage;
                     alexa.emit(':ask', output, output);
                 }
-            } else {
-                output = NoDataMessage;
-                alexa.emit(':ask', output, output);
-            }
-        });
+            });
+        }
+        else{
+            this.emit(":ask", "I'm sorry.  What day did you want me to look for events?", "I'm sorry.  What day did you want me to look for events?");
+        }
     },
 
     'AMAZON.HelpIntent': function () {
@@ -216,20 +226,26 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
         var repromt = " Would you like to hear another event?";
         var slotValue = this.event.request.intent.slots.number.value;
+        if (slotValue != undefined)
+        {
+            // parse slot value
+            var index = parseInt(slotValue) - 1;
 
-        // parse slot value
-        var index = parseInt(slotValue) - 1;
+            if (relevantEvents[index]) {
 
-        if (relevantEvents[index]) {
+                // use the slot value as an index to retrieve description from our relevant array
+                output = descriptionMessage + removeTags(relevantEvents[index].description);
 
-            // use the slot value as an index to retrieve description from our relevant array
-            output = descriptionMessage + removeTags(relevantEvents[index].description);
+                output += repromt;
 
-            output += repromt;
-
-            this.emit(':askWithCard', output, repromt, relevantEvents[index].summary, output);
-        } else {
-            this.emit(':tell', eventOutOfRange);
+                this.emit(':askWithCard', output, repromt, relevantEvents[index].summary, output);
+            } else {
+                this.emit(':tell', eventOutOfRange);
+            }
+        }
+        else
+        {
+            this.emit(":ask", "I'm sorry.  Which event did you want to hear more about?", "I'm sorry.  Which event did you want to hear more about?");
         }
     },
 
