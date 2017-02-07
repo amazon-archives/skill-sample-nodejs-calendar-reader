@@ -226,26 +226,20 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
         var repromt = " Would you like to hear another event?";
         var slotValue = this.event.request.intent.slots.number.value;
-        if (slotValue != undefined)
-        {
-            // parse slot value
-            var index = parseInt(slotValue) - 1;
 
-            if (relevantEvents[index]) {
+        // parse slot value
+        var index = parseInt(slotValue) - 1;
 
-                // use the slot value as an index to retrieve description from our relevant array
-                output = descriptionMessage + removeTags(relevantEvents[index].description);
+        if (relevantEvents[index]) {
 
-                output += repromt;
+            // use the slot value as an index to retrieve description from our relevant array
+            output = descriptionMessage + removeTags(relevantEvents[index].description);
 
-                this.emit(':askWithCard', output, repromt, relevantEvents[index].summary, output);
-            } else {
-                this.emit(':tell', eventOutOfRange);
-            }
-        }
-        else
-        {
-            this.emit(":ask", "I'm sorry.  Which event did you want to hear more about?", "I'm sorry.  Which event did you want to hear more about?");
+            output += repromt;
+
+            this.emit(':askWithCard', output, repromt, relevantEvents[index].summary, output);
+        } else {
+            this.emit(':tell', eventOutOfRange);
         }
     },
 
