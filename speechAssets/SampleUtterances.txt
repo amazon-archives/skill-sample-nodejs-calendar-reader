@@ -1,5 +1,5 @@
 searchIntent get me stuff happening {date}
-searchIntent get me events for {date}
+searchIntent get me classes for {date}
 searchIntent whats on {date}
 searchIntent {date}
 searchIntent for {date}
@@ -7,10 +7,11 @@ searchIntent whats happening {date}
 searchIntent tell me whats happening {date}
 searchIntent what is happening {date}
 searchIntent what is happening on {date}
-searchIntent what events are happening {date}
-searchIntent what events are happening on {date}
+searchIntent what classes are happening {date}
+searchIntent what classes are happening on {date}
+searchIntent what classes are there on {date}
 
-eventIntent tell me about event {number}
-eventIntent whats event {number}
-eventIntent number {number}
-eventIntent {number}
+classIntent tell me about {className} class
+classIntent whats class {className}
+classIntent class {className}
+classIntent {className}

@@ -1,4 +1,6 @@
 
 skill-sample-nodejs-calendar-reader.pdf
-
+*.zip
+src/node_modules
+src/test.js
 Archive.zip

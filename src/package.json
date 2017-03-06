@@ -1,7 +1,7 @@
 {
-  "name": "skill-sample-nodejs-calendar-reader",
+  "name": "alexa-skill-gym-classes",
   "version": "1.0.0",
-  "description": "A simple calendar reading skill.",
+  "description": "A simple calendar for my club online gyms.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +11,11 @@
     "skill",
     "fact"
   ],
-  "author": "Amazon.com",
+  "author": "",
   "license": "Apache-2.0",
   "dependencies": {
     "alexa-sdk": "^1.0.0",
-    "ical": "^0.5.0"
+    "ical": "^0.5.0",
+    "superagent":"3.5.0"
   }
 }
