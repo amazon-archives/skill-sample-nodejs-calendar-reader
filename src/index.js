@@ -51,7 +51,7 @@ var eventSummary = "The %s event is, %s at %s on %s ";
 var cardContentSummary = "%s at %s on %s ";
 
 // More info text
-var haveEventsRepromt = "Give me an event number to hear more information.";
+var haveEventsreprompt = "Give me an event number to hear more information.";
 
 // Error if a date is out of range
 var dateOutOfRange = "Date is out of range please choose another date";
@@ -80,7 +80,8 @@ var relevantEvents = new Array();
 var newSessionHandlers = {
     'LaunchRequest': function () {
         this.handler.state = states.SEARCHMODE;
-        this.emit(':ask', skillName + " " + welcomeMessage, welcomeMessage);
+        this.response.speak(skillName + " " + welcomeMessage).listen(welcomeMessage);
+        this.emit(':responseReady');
     },
     "searchIntent": function() 
     {
@@ -88,7 +89,8 @@ var newSessionHandlers = {
         this.emitWithState("searchIntent");
     },
     'Unhandled': function () {
-        this.emit(':ask', HelpMessage, HelpMessage);
+        this.response.speak(HelpMessage).listen(HelpMessage);
+        this.emit(':responseReady');        
     },
 };
 
@@ -96,15 +98,17 @@ var newSessionHandlers = {
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'AMAZON.YesIntent': function () {
         output = welcomeMessage;
-        alexa.emit(':ask', output, welcomeMessage);
+        alexa.response.speak(output).listen(welcomeMessage);
+        this.emit(':responseReady');        
     },
 
     'AMAZON.NoIntent': function () {
-        this.emit(':tell', shutdownMessage);
+        this.response.speak(shutdownMessage);
+        this.emit(':responseReady');        
     },
 
     'AMAZON.RepeatIntent': function () {
-        this.emit(':ask', output, HelpMessage);
+        this.response.speak(output).listen(HelpMessage);
     },
 
     'searchIntent': function () {
@@ -177,38 +181,42 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                             }
 
                             output += eventNumberMoreInfoText;
-                            alexa.emit(':askWithCard', output, haveEventsRepromt, cardTitle, cardContent);
+                            alexa.response.cardRenderer(cardTitle, cardContent);
+                            alexa.response.speak(output).listen(haveEventsreprompt);
                         } else {
                             output = NoDataMessage;
-                            alexa.emit(':ask', output, output);
+                            alexa.emit(output).listen(output);
                         }
                     }
                     else {
                         output = NoDataMessage;
-                        alexa.emit(':ask', output, output);
+                        alexa.emit(output).listen(output);
                     }
                 } else {
                     output = NoDataMessage;
-                    alexa.emit(':ask', output, output);
+                    alexa.emit(output).listen(output);
                 }
             });
         }
         else{
-            this.emit(":ask", "I'm sorry.  What day did you want me to look for events?", "I'm sorry.  What day did you want me to look for events?");
+            this.response.speak("I'm sorry.  What day did you want me to look for events?").listen("I'm sorry.  What day did you want me to look for events?");
         }
+
+        this.emit(':responseReady');        
     },
 
     'AMAZON.HelpIntent': function () {
         output = HelpMessage;
-        this.emit(':ask', output, output);
+        this.response.speak(output).listen(output);
+        this.emit(':responseReady');                
     },
 
     'AMAZON.StopIntent': function () {
-        this.emit(':tell', killSkillMessage);
+        this.response.speak(killSkillMessage);
     },
 
     'AMAZON.CancelIntent': function () {
-        this.emit(':tell', killSkillMessage);
+        this.response.speak(killSkillMessage);
     },
 
     'SessionEndedRequest': function () {
@@ -216,7 +224,8 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
 
     'Unhandled': function () {
-        this.emit(':ask', HelpMessage, HelpMessage);
+        this.response.speak(HelpMessage).listen(HelpMessage);
+        this.emit(':responseReady');                
     }
 });
 
@@ -224,7 +233,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     'eventIntent': function () {
 
-        var repromt = " Would you like to hear another event?";
+        var reprompt = " Would you like to hear another event?";
         var slotValue = this.event.request.intent.slots.number.value;
 
         // parse slot value
@@ -235,33 +244,41 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
             // use the slot value as an index to retrieve description from our relevant array
             output = descriptionMessage + removeTags(relevantEvents[index].description);
 
-            output += repromt;
+            output += reprompt;
 
-            this.emit(':askWithCard', output, repromt, relevantEvents[index].summary, output);
+            this.response.cardRenderer(relevantEvents[index].summary, output);
+            this.response.speak(output).listen(reprompt);
         } else {
-            this.emit(':tell', eventOutOfRange);
+            this.response.speak(eventOutOfRange);
         }
+
+        this.emit(':responseReady');                
     },
 
     'AMAZON.HelpIntent': function () {
-        this.emit(':ask', descriptionStateHelpMessage, descriptionStateHelpMessage);
+        this.response.speak(descriptionStateHelpMessage).listen(descriptionStateHelpMessage);
+        this.emit(':responseReady');                
     },
 
     'AMAZON.StopIntent': function () {
-        this.emit(':tell', killSkillMessage);
+        this.response.speak(killSkillMessage);
+        this.emit(':responseReady');                
     },
 
     'AMAZON.CancelIntent': function () {
-        this.emit(':tell', killSkillMessage);
+        this.response.speak(killSkillMessage);
+        this.emit(':responseReady');                
     },
 
     'AMAZON.NoIntent': function () {
-        this.emit(':tell', shutdownMessage);
+        this.response.speak(shutdownMessage);
+        this.emit(':responseReady');                
     },
 
     'AMAZON.YesIntent': function () {
         output = welcomeMessage;
-        alexa.emit(':ask', eventNumberMoreInfoText, eventNumberMoreInfoText);
+        alexa.response.speak(eventNumberMoreInfoText).listen(eventNumberMoreInfoText);
+        this.emit(':responseReady');                
     },
 
     'SessionEndedRequest': function () {
@@ -269,7 +286,8 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     },
 
     'Unhandled': function () {
-        this.emit(':ask', HelpMessage, HelpMessage);
+        this.response.speak(HelpMessage).listen(HelpMessage);
+        this.emit(':responseReady');                
     }
 });
 
