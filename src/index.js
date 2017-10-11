@@ -92,6 +92,27 @@ var newSessionHandlers = {
         this.response.speak(HelpMessage).listen(HelpMessage);
         this.emit(':responseReady');        
     },
+
+    'AMAZON.StopIntent': function () {
+        this.emit(':tell', killSkillMessage);
+    },
+
+    'AMAZON.CancelIntent': function () {
+        this.emit(':tell', killSkillMessage);
+    },
+
+    'AMAZON.NoIntent': function () {
+        this.emit(':tell', shutdownMessage);
+    },
+
+    'SessionEndedRequest': function () {
+        this.emit('AMAZON.StopIntent');
+    },
+
+    'Unhandled': function () {
+        // This occurs if there is no state defined.
+        this.emit(':ask', HelpMessage, HelpMessage);
+    }
 };
 
 // Create a new handler with a SEARCH state
