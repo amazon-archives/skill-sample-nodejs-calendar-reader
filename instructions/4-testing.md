@@ -1,4 +1,4 @@
-# Build An Alexa Quiz Game Skill
+# Build An Alexa Calendar Reader Skill
 [![Voice User Interface](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/1-locked._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/instructions/1-voice-user-interface.md)[![Lambda Function](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/2-locked._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/instructions/2-lambda-function.md)[![Connect VUI to Code](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/3-locked._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/instructions/3-connect-vui-to-code.md)[![Testing](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/4-on._TTH_.png)](https://github.com/alexa/sskill-sample-nodejs-calendar-reader/blob/master/instructions/4-testing.md)[![Customization](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/5-off._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/instructions/5-customization.md)[![Publication](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/6-off._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/instructions/6-publication.md)
 
 ## Testing Your Alexa Skill
@@ -134,15 +134,8 @@ pronounce it. To make changes to her pronunciation, use Speech Synthesis Markup 
     *  [Echosim.io](https://echosim.io) - a browser-based Alexa skill testing tool that makes it easy to test your skills without carrying a physical device everywhere you go.
     *  [Unit Testing with Alexa](https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/unit-testing.md) - a modern approach to unit testing your Alexa skills with [Postman](http://getpostman.com) and [Amazon API Gateway](http://aws.amazon.com/apigateway).
 
-7.  **Verify that cards are working properly.**  Open the Alexa app on your phone, or at http://alexa.amazon.com.
 
-    *  Ask the skill for a state: "Alexa, ask Quiz Game about Ohio."
-    *  Verify that a card was created in the Alexa app that resembles this screenshot:
-
-       <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/4-7-alexa-app._TTH_.png"/>   
-
-
-8.  **If your sample skill is working properly, you can now customize your skill.**
+7.  **If your sample skill is working properly, you can now customize your skill.**
 
 <br/><br/>
 <a href="https://github.com/alexa/skill-sample-nodejs-calendar-reader/blob/master/instructions/5-customization.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/buttons/button_next_customization._TTH_.png" /></a>
