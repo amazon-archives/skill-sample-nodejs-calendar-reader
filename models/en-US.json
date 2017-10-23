@@ -1,0 +1,64 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "stanford calendar",
+      "intents": [
+        {
+          "name": "AMAZON.HelpIntent"
+        },
+        {
+          "name": "AMAZON.StopIntent"
+        },
+        {
+          "name": "AMAZON.RepeatIntent"
+        },
+        {
+          "name": "AMAZON.CancelIntent"
+        },
+        {
+          "name": "AMAZON.YesIntent"
+        },
+        {
+          "name": "AMAZON.NoIntent"
+        },
+        {
+          "name": "searchIntent",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "get me stuff happening {date}",
+            "get me events for {date}",
+            "whats on {date}",
+            "{date}",
+            "for {date}",
+            "whats happening {date}",
+            "tell me whats happening {date}",
+            "what is happening {date}",
+            "what is happening on {date}",
+            "what events are happening {date}",
+            "what events are happening on {date}"
+          ]
+        },
+        {
+          "name": "eventIntent",
+          "slots": [
+            {
+              "name": "number",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "tell me about event {number}",
+            "whats event {number}",
+            "number {number}",
+            "{number}"
+          ]
+        }
+      ]
+    }
+  }
+}
