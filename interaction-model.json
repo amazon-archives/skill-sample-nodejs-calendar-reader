@@ -1,0 +1,67 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.NoIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.RepeatIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.YesIntent",
+      "samples": []
+    },
+    {
+      "name": "eventIntent",
+      "samples": [
+        "tell me about event {number}",
+        "whats event {number}",
+        "number {number}",
+        "{number}"
+      ],
+      "slots": [
+        {
+          "name": "number",
+          "type": "AMAZON.NUMBER",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "searchIntent",
+      "samples": [
+        "get me stuff happening {date}",
+        "get me events for {date}",
+        "whats on {date}",
+        "{date}",
+        "for {date}",
+        "whats happening {date}",
+        "tell me whats happening {date}",
+        "what is happening {date}",
+        "what is happening on {date}",
+        "what events are happening {date}",
+        "what events are happening on {date}"
+      ],
+      "slots": [
+        {
+          "name": "date",
+          "type": "AMAZON.DATE",
+          "samples": []
+        }
+      ]
+    }
+  ]
+}
