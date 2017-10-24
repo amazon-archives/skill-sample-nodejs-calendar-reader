@@ -31,7 +31,7 @@ In the [first step of this guide](https://github.com/alexa/skill-sample-nodejs-c
 
     Once you have selected Alexa Skills Kit, click the **Next** button.
 
-7.  **Configure your function.** This screen is where we will enter the important parts of our Lambda function.  These values will only ever be visible to you, but make sure that you name your function something meaningful.  "QuizGame" is sufficient if you don't have another idea for a name.
+7.  **Configure your function.** This screen is where we will enter the important parts of our Lambda function.  These values will only ever be visible to you, but make sure that you name your function something meaningful.  "CalendarReader" is sufficient if you don't have another idea for a name.
 
     <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/2-7-configure-your-function._TTH_.png" />
 

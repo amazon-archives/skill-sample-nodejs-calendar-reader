@@ -32,7 +32,7 @@ There are two parts to an Alexa skill.  The first part is the [Voice User Interf
 
     *  **Name** This is the name of the skill as it will be displayed in the [Alexa app](http://alexa.amazon.com).
 
-    *  **Invocation Name** This is the name spoken by your users to start the skill. Use a name like "united states quiz" for this sample skill. Some common issues that developers experience with invocation names are listed in the following table. In addition, please review the [Invocation Name Requirements](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/choosing-the-invocation-name-for-an-alexa-skill) as you consider an invocation name for your skill.
+    *  **Invocation Name** This is the name spoken by your users to start the skill. Use a name like "calendar reader" for this sample skill. Some common issues that developers experience with invocation names are listed in the following table. In addition, please review the [Invocation Name Requirements](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/choosing-the-invocation-name-for-an-alexa-skill) as you consider an invocation name for your skill.
 
         | Invocation Name Requirements | Examples of incorrect invocation names |
         | ---------------------------- | -------------------------------------- |
@@ -62,7 +62,7 @@ There are two parts to an Alexa skill.  The first part is the [Voice User Interf
 
 11. Add some more sample utterances for your newly generated intents.  These are the things a user would say to make a specific intent happen.  Here are a few examples:
 
-    * Am I free {date}
+    * am I free {date}
     * whats am i doing {date}
     * what are my plans {date}
     * what meetings do i have {date}
