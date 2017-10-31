@@ -94,8 +94,7 @@ pronounce it. To make changes to her pronunciation, use Speech Synthesis Markup 
     }
   },
   "version": "1.0"
-}
-        ```
+}```
 
     2.  **Open your Lambda function in AWS, open the Actions menu, and select "Configure test event."**
 
