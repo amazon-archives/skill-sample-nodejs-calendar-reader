@@ -47,11 +47,11 @@ pronounce it. To make changes to her pronunciation, use Speech Synthesis Markup 
 
         <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/4-5-2-configure-test-event._TTH_.png" />
 
-    3.  **Select "Create New Test Event". Choose "Alexa Start Session" as the Event Template from the dropdown list. Add an Event Name that you can remember.** You can choose any test event in the list, as they are just templated event requests, but using "Alexa Start Session" is an easy one to remember.  The Event Name is only visible to you. Name your test event something descriptive and memorable. For our example, we entered an event name as "startSession".
+    3.  **Select "Create New Test Event". Choose "Alexa Start Session" as the Event Template from the dropdown list.** You can choose any test event in the list, as they are just templated event requests, but using "Alexa Start Session" is an easy one to remember.  
 
         <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/4-5-3-alexa-start-session._TTH_.png" />
 
-    4.  **Delete the contents of the box, and paste the Lambda request you copied above into the code editor.** By copying and pasting your Lambda Requesting from the service simulator, you can test events different utterances and skill events beyond the pre-populated templates in Lambda.
+    4.  **Type in an Event Name into the Event Name Dialog box. Delete the contents of the code editor, and paste the Lambda request you copied above into the code editor.** The Event Name is only visible to you. Name your test event something descriptive and memorable. For our example, we entered an event name as "startSession". Additionally, by copying and pasting your Lambda Request from the service simulator, you can test different utterances and skill events beyond the pre-populated templates in Lambda.
 
         <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/fact/4-5-4-paste-request._TTH_.png" />
 
