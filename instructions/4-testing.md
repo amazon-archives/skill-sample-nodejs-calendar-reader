@@ -41,48 +41,23 @@ pronounce it. To make changes to her pronunciation, use Speech Synthesis Markup 
     * If you receive a response that reads: *"The remote endpoint could not be called, or the response it returned was invalid,"* this is an indication that something is broken.  AWS Lambda offers an additional testing tool to help you troubleshoot your skill.
 
 5.  **Configure a test event in AWS Lambda.** Now that you are familiar with the **request** and **response** boxes in the Service Simulator, it's important for you to know that you can use your **requests** to directly test your Lambda function every time you update it.  To do this:
-    1.  Create & copy a new response with the Service Simulator, or grab the sample text from the box below:
+    1.  Enter an utterance in the service simulator, and copy the generated Lambda Request for the next step.
 
-        ```JAVASCRIPT
-        {
-            "session": {
-                "sessionId": "SessionId.ce5b9874-0f86-49d0-8fe2-85f5a2008386",
-                "application": {
-                "applicationId": "amzn1.ask.skill.ac4240ad-4b18-484a-ab67-d740ed1320ac"
-                },
-                "attributes": {},
-                "user": {
-                "userId": "amzn1.ask.account.AGZFAKNV3GFD5OWVXLULBF2NNRHHUSJEHVDEMNQ2ZHTN5N6FPCIOQAJBBJCJ7M4TR254CLS5HPRW25NQL22M5XFR3MV73KJ52MOAD5E4MSKEMZWV2626OF6IOU3YZ6G5ZC5KQW7RP63GUFDRTB5PACWW3375W2E5JQBORIFUEZUYWVGOBHC7Z33C4UOE4QGBFYFFDGHMXW4OL5I"
-                },
-                "new": true
-            },
-            "request": {
-                "type": "IntentRequest",
-                "requestId": "EdwRequestId.1181fc5e-453e-4bb4-8ec5-ba48bcaf88ec",
-                "locale": "en-US",
-                "timestamp": "2017-05-03T15:09:42Z",
-                "intent": {
-                "name": "DontKnowIntent",
-                "slots": {}
-                }
-            },
-            "version": "1.0"
-        }
-        ```
-
-    2.  **Open your Lambda function in AWS, open the Actions menu, and select "Configure test event."**
+    2.  **Open your Lambda function in AWS, open the Actions menu, and select "Configure test events."**
 
         <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/4-5-2-configure-test-event._TTH_.png" />
 
-    3.  **Choose "Alexa Start Session" from the Sample Event Template dropdown list.** You can choose any item in the list, as they are just templated event requests, but using "Alexa Start Session" is an easy one to remember.  This will also be the sample request that fires every time you update and "Save and Test" your Lambda code.
+    3.  **Select "Create New Test Event". Choose "Alexa Start Session" as the Event Template from the dropdown list. Add an Event Name that you can remember.** You can choose any test event in the list, as they are just templated event requests, but using "Alexa Start Session" is an easy one to remember.  The Event Name is only visible to you. Name your test event something descriptive and memorable. For our example, we entered an event name as "startSession".
 
         <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/4-5-3-alexa-start-session._TTH_.png" />
 
-    4.  **Delete the contents of the box, and paste your request into the box.**
+    4.  **Delete the contents of the box, and paste the Lambda request you copied above into the code editor.** By copying and pasting your Lambda Requesting from the service simulator, you can test events different utterances and skill events beyond the pre-populated templates in Lambda.
 
         <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/fact/4-5-4-paste-request._TTH_.png" />
 
-    5.  **Click the "Save and test" button.** This will save your test event, and run it against your Lambda function.
+    5.  **Click the "Create" button.** This will save your test event and bring you back to the main configuration for your lambda function.
+
+    6.  **Click the "Test" button to execute the "startSession" test event.**
 
         <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/4-5-5-save-and-test._TTH_.png" />
 
