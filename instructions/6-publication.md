@@ -88,7 +88,7 @@ We are almost done!  The last step is to add the metadata that your skill will u
     *  **Does this Alexa skill collect users' personal information?** Again, for this calendar reader, the answer is no.  If you do collect information about a user, such as names, email addresses, phone numbers, and so forth, ensure that you answer Yes to this question.
         *  Answering "yes" to this question will also require you to provide a link to your Privacy Policy at the bottom of the page.
 
-    *  **Is your skill directed to children under the age of 13?** Because you customized this skill with data you provided, it is possible that you created a skill that targets children under the age of 13.  For the Calendar Reader, the answer is **no** because it doesn't target a specific age group.
+    *  **Is your skill directed to children under the age of 13?** Because you customized this skill with data you provided, it is possible that you created a skill that targets children under the age of 13.  For the United States Quiz, the answer is **no** because it doesn't target a specific age group.
         * Factors to consider in determining if this skill is directed to children under 13 include:
             * Subject matter of the skill
             * Presence of child-oriented activities and incentives
