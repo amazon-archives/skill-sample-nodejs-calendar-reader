@@ -8,7 +8,7 @@ const states = {
     DESCRIPTION: '_DESKMODE',
 };
 // local variable holding reference to the Alexa SDK object
-const alexa;
+let alexa;
 
 //OPTIONAL: replace with "amzn1.ask.skill.[your-unique-value-here]";
 let APP_ID = undefined;
