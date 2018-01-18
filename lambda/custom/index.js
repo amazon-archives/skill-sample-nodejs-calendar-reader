@@ -1,6 +1,5 @@
 const Alexa = require('alexa-sdk');
 const ical = require('ical');
-const http = require('http');
 const utils = require('util');
 
 const states = {
@@ -8,7 +7,7 @@ const states = {
     DESCRIPTION: '_DESKMODE',
 };
 // local variable holding reference to the Alexa SDK object
-const alexa;
+let alexa;
 
 //OPTIONAL: replace with "amzn1.ask.skill.[your-unique-value-here]";
 let APP_ID = undefined;
@@ -120,7 +119,7 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             let parent = this;
 
             // Using the iCal library I pass the URL of where we want to get the data from.
-            ical.fromURL(URL, {}, function (err, data) {
+            ical.fromURL(URL, {}, function (error, data) {
                 // Loop through all iCal data found
                 for (let k in data) {
                     if (data.hasOwnProperty(k)) {
@@ -237,7 +236,7 @@ const descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         let slotValue = this.event.request.intent.slots.number.value;
 
         // parse slot value
-        const index = parseInt(slotValue) - 1;
+        const index = parseInt(slotValue, 10) - 1;
 
         if (relevantEvents[index]) {
 
@@ -316,7 +315,6 @@ function removeTags(str) {
 function getDateFromSlot(rawDate) {
     // try to parse data
     let date = new Date(Date.parse(rawDate));
-    let result;
     // create an empty object to use later
     let eventDate = {
 
@@ -358,7 +356,7 @@ function getWeekendData(res) {
         const weekStart = w2date(res[0], weekNumber, saturdayIndex);
         const weekEnd = w2date(res[0], weekNumber, sundayIndex);
 
-        return Dates = {
+        return {
             startDate: weekStart,
             endDate: weekEnd,
         };
@@ -377,7 +375,7 @@ function getWeekData(res) {
         const weekStart = w2date(res[0], weekNumber, mondayIndex);
         const weekEnd = w2date(res[0], weekNumber, sundayIndex);
 
-        return Dates = {
+        return {
             startDate: weekStart,
             endDate: weekEnd,
         };
