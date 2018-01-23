@@ -22,7 +22,7 @@ const skillName = "Events calendar:";
 const welcomeMessage = "You can ask for the events today. Search for events by date. or say help. What would you like? ";
 
 // Message for help intent
-const HelpMessage = "Here are some things you can say: Is there an event today? Is there an event on the 18th of July? What are the events next week? Are there any events tomorrow?  What would you like to know?";
+const HelpMessage = "Here are some things you can say: Get me events for today. Tell me whats happening on the 18th of July. What events are happening next week? Get me stuff happening tomorrow. ";
 
 const descriptionStateHelpMessage = "Here are some things you can say: Tell me about event one";
 
