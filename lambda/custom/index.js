@@ -192,13 +192,13 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                     output = NoDataMessage;
                     this.response.speak(output).listen(output);
                 }
+                this.emit(':responseReady');
             }.bind(this));
         }
         else{
             this.response.speak("I'm sorry.  What day did you want me to look for events?").listen("I'm sorry.  What day did you want me to look for events?");
+            this.emit(':responseReady');
         }
-
-        this.emit(':responseReady');
     },
 
     'AMAZON.HelpIntent': function () {
