@@ -64,7 +64,7 @@ const descriptionMessage = "Here's the description ";
 // Used when an event is asked for
 const killSkillMessage = "Ok, great, see you next time.";
 
-const eventNumberMoreInfoText = "You can say the event number for more information.";
+const eventNumberMoreInfoText = "For more information on a specific event number, try saying: what's event one?";
 
 // used for title on companion app
 const cardTitle = "Events";
@@ -248,7 +248,7 @@ const descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
             this.response.cardRenderer(relevantEvents[index].summary, output);
             this.response.speak(output).listen(reprompt);
         } else {
-            this.response.speak(eventOutOfRange);
+            this.response.speak(eventOutOfRange).listen(welcomeMessage);
         }
 
         this.emit(':responseReady');
