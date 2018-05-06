@@ -6,9 +6,6 @@ const states = {
     SEARCHMODE: '_SEARCHMODE',
     DESCRIPTION: '_DESKMODE',
 };
-// local variable holding reference to the Alexa SDK object
-let alexa;
-
 //OPTIONAL: replace with "amzn1.ask.skill.[your-unique-value-here]";
 let APP_ID = undefined;
 
@@ -97,7 +94,7 @@ const newSessionHandlers = {
 const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'AMAZON.YesIntent': function () {
         output = welcomeMessage;
-        alexa.response.speak(output).listen(welcomeMessage);
+        this.response.speak(output).listen(welcomeMessage);
         this.emit(':responseReady');
     },
 
@@ -180,28 +177,28 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                             }
 
                             output += eventNumberMoreInfoText;
-                            alexa.response.cardRenderer(cardTitle, cardContent);
-                            alexa.response.speak(output).listen(haveEventsreprompt);
+                            this.response.cardRenderer(cardTitle, cardContent);
+                            this.response.speak(output).listen(haveEventsreprompt);
                         } else {
                             output = NoDataMessage;
-                            alexa.emit(output).listen(output);
+                            this.response.speak(output).listen(output);
                         }
                     }
                     else {
                         output = NoDataMessage;
-                        alexa.emit(output).listen(output);
+                        this.response.speak(output).listen(output);
                     }
                 } else {
                     output = NoDataMessage;
-                    alexa.emit(output).listen(output);
+                    this.response.speak(output).listen(output);
                 }
-            });
+                this.emit(':responseReady');
+            }.bind(this));
         }
         else{
             this.response.speak("I'm sorry.  What day did you want me to look for events?").listen("I'm sorry.  What day did you want me to look for events?");
+            this.emit(':responseReady');
         }
-
-        this.emit(':responseReady');
     },
 
     'AMAZON.HelpIntent': function () {
@@ -292,7 +289,7 @@ const descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
 // register handlers
 exports.handler = function (event, context, callback) {
-    alexa = Alexa.handler(event, context);
+    const alexa = Alexa.handler(event, context);
     alexa.appId = APP_ID;
     alexa.registerHandlers(newSessionHandlers, startSearchHandlers, descriptionHandlers);
     alexa.execute();
