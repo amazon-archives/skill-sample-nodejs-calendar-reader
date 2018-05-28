@@ -6,11 +6,9 @@ const states = {
     SEARCHMODE: '_SEARCHMODE',
     DESCRIPTION: '_DESKMODE',
 };
-// local variable holding reference to the Alexa SDK object
-let alexa;
 
 //OPTIONAL: replace with "amzn1.ask.skill.[your-unique-value-here]";
-let APP_ID = undefined;
+const APP_ID = undefined;
 
 // URL to get the .ics from, in this instance we are getting from Stanford however this can be changed
 const URL = "http://events.stanford.edu/eventlist.ics";
@@ -97,7 +95,7 @@ const newSessionHandlers = {
 const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'AMAZON.YesIntent': function () {
         output = welcomeMessage;
-        alexa.response.speak(output).listen(welcomeMessage);
+        this.response.speak(output).listen(welcomeMessage);
         this.emit(':responseReady');
     },
 
@@ -108,6 +106,7 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
     'AMAZON.RepeatIntent': function () {
         this.response.speak(output).listen(HelpMessage);
+        this.emit(':responseReady');
     },
 
     'searchIntent': function () {
@@ -116,8 +115,6 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         const slotValue = this.event.request.intent.slots.date.value;
         if (slotValue != undefined)
         {
-            let parent = this;
-
             // Using the iCal library I pass the URL of where we want to get the data from.
             ical.fromURL(URL, {}, function (error, data) {
                 // Loop through all iCal data found
@@ -146,7 +143,7 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                         if (relevantEvents.length > 0) {
                             // change state to description
-                            parent.handler.state = states.DESCRIPTION;
+                            this.handler.state = states.DESCRIPTION;
 
                             // Create output for both Alexa and the content card
                             let cardContent = "";
@@ -180,28 +177,28 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                             }
 
                             output += eventNumberMoreInfoText;
-                            alexa.response.cardRenderer(cardTitle, cardContent);
-                            alexa.response.speak(output).listen(haveEventsreprompt);
+                            this.response.cardRenderer(cardTitle, cardContent);
+                            this.response.speak(output).listen(haveEventsreprompt);
                         } else {
                             output = NoDataMessage;
-                            alexa.emit(output).listen(output);
+                            this.response.speak(output).listen(output);
                         }
                     }
                     else {
                         output = NoDataMessage;
-                        alexa.emit(output).listen(output);
+                        this.response.speak(output).listen(output);
                     }
                 } else {
                     output = NoDataMessage;
-                    alexa.emit(output).listen(output);
+                    this.response.speak(output).listen(output);
                 }
-            });
+                this.emit(':responseReady');
+            }.bind(this));
         }
         else{
             this.response.speak("I'm sorry.  What day did you want me to look for events?").listen("I'm sorry.  What day did you want me to look for events?");
+            this.emit(':responseReady');
         }
-
-        this.emit(':responseReady');
     },
 
     'AMAZON.HelpIntent': function () {
@@ -212,10 +209,12 @@ const startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
     'AMAZON.StopIntent': function () {
         this.response.speak(killSkillMessage);
+        this.emit(':responseReady');
     },
 
     'AMAZON.CancelIntent': function () {
         this.response.speak(killSkillMessage);
+        this.emit(':responseReady');
     },
 
     'SessionEndedRequest': function () {
@@ -276,7 +275,7 @@ const descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
     'AMAZON.YesIntent': function () {
         output = welcomeMessage;
-        alexa.response.speak(eventNumberMoreInfoText).listen(eventNumberMoreInfoText);
+        this.response.speak(eventNumberMoreInfoText).listen(eventNumberMoreInfoText);
         this.emit(':responseReady');
     },
 
@@ -292,7 +291,7 @@ const descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
 // register handlers
 exports.handler = function (event, context, callback) {
-    alexa = Alexa.handler(event, context);
+    const alexa = Alexa.handler(event, context);
     alexa.appId = APP_ID;
     alexa.registerHandlers(newSessionHandlers, startSearchHandlers, descriptionHandlers);
     alexa.execute();
