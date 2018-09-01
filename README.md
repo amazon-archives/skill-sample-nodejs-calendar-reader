@@ -23,10 +23,10 @@ Be sure to take a look at the [Additional Resources](#additional-resources) at t
 ### Usage
 
 ```text
-Alexa, ask events calendar how many events I have today.
+Alexa, ask stanford calendar how many events I have today.
 	>> "Sorry there aren't any events scheduled. Would you like to search again?
 
-Alexa, open events calendar
+Alexa, open stanford calendar
 ```
 
 ### Repository Contents
@@ -84,7 +84,7 @@ ASK CLI will create the skill and the lambda function for you. The Lambda functi
 2. Simulate verbal interaction with your skill through the command line using the following example:
 
 	```bash
-	 $ ask simulate -l en-US -t "start events calendar"
+	 $ ask simulate -l en-US -t "open stanford calendar"
 
 	 ✓ Simulation created for simulation id: 4a7a9ed8-94b2-40c0-b3bd-fb63d9887fa7
 	◡ Waiting for simulation response{
@@ -95,7 +95,7 @@ ASK CLI will create the skill and the lambda function for you. The Lambda functi
 3. Once the "Test" switch is enabled, your skill can be tested on devices associated with the developer account as well. Speak to Alexa from any enabled device, from your browser at [echosim.io](https://echosim.io/welcome), or through your Amazon Mobile App and say :
 
 	```text
-	Alexa, start events calendar
+	Alexa, open stanford calendar get events for today
 	```
 
 ## Customization
