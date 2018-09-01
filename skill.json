@@ -1,16 +1,27 @@
 {
-  "skillManifest": {
+  "manifest": {
     "publishingInformation": {
       "locales": {
         "en-US": {
           "summary": "Sample Short Description",
           "examplePhrases": [
-            "Alexa open staford calendar",
+            "Alexa open stanford calendar",
             "Alexa ask stanford calendar whats happening today",
             "Alexa tell stanford calendar get me events for tomorrow"
           ],
           "name": "Stanford Calendar",
           "description": "Sample Full Description"
+        },
+        "en-GB": {
+          "summary": "Sample Short Description",
+          "examplePhrases": [
+            "Alexa open stanford calendar",
+            "Alexa ask stanford calendar whats happening today",
+            "Alexa tell stanford calendar get me events for tomorrow"
+            "Alexa tell stanford calendar get me events for today"
+
+          ],
+          "name": "Stanford Calendar"
         }
       },
       "isAvailableWorldwide": true,
@@ -21,8 +32,9 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "sourceDir": "lambda/custom"
-        }
+          "sourceDir": ".\\lambda\\us-east-1_ask-custom-calendar-default"
+        },
+        "interfaces": []
       }
     },
     "manifestVersion": "1.0"
