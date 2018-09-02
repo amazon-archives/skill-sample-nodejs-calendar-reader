@@ -108,21 +108,26 @@ ASK CLI will create the skill and the lambda function for you. The Lambda functi
 
    See the Skill [Manifest Documentation](https://developer.amazon.com/docs/smapi/skill-manifest.html) for more information.
 
-1a. Link your Microsoft, or Google account to your calendar by selecting your account in the Alexa App for stanford calendar
+1a. Link your Microsoft, or Google accoun.  t to your calendar by selecting your account in the Alexa App for stanford calendar
 
-under the main dev skills list. In the loft  column scroll dowhomen to Settings,from the main screen to Alexa Preferences
+    under the main dev skills list. In the loft  column scroll down to
 
-scroll down to calendar and select Calendar (Google,Microsoft,Apple ) email account connection appear
+    Settings,from the main screen to Alexa Preferences
 
+    scroll down to calendar and select Calendar (Google,Microsoft,Apple )
 
-select Microsoft and enter your Office 365 Calendar details the accounts are linked so when you say
-
-
-
-Alexa, open stanford calendar get events for today
+    email   account connection appear
 
 
-Your Office 365 Calendar events are spoken for today and you are out of office, still at home having breakfast
+    select Microsoft and enter your Office 365 Calendar details the accounts are linked so when you say
+
+
+
+    Alexa, open stanford calendar get events for today
+
+
+    Your Office 365 Calendar events are spoken for today and you are out of office, still at home, proably having breakfast.
+
 
  
 
