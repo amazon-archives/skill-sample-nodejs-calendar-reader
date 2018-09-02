@@ -126,7 +126,9 @@ ASK CLI will create the skill and the lambda function for you. The Lambda functi
     Alexa, open stanford calendar get events for today
 
 
-    Your Office 365 Calendar events are spoken for today and you are out of office, still at home, proably having breakfast.
+    Your Office 365 Calendar events are spoken for today and you are out of office, still at home,
+
+    probably having breakfast.
 
 
  
